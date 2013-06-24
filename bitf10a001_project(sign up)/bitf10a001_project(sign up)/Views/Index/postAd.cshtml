@@ -1,0 +1,570 @@
+﻿@model IEnumerable<bitf10a001_project_sign_up_.Models.allad>
+@{
+    ViewBag.Title = "Post Your Ad";
+    
+}
+
+
+
+
+<!-- top header + icon-->
+<div class="row">
+    <br />
+
+    <!-- site logo -->
+    <div class="span4">
+        <a id="header_logo" href="/Index/index" title="FURNITURE">
+            <img src="/img/logoNew.png" alt="FURNITURE" />
+        </a>
+    </div>
+    <!-- site logo end-->
+
+    <!-- login logout and account -->
+    <div class="span6">
+        <!-- login logout and account -->
+
+        <br />@*postAd.html?tab3*@
+
+        <p class="mypara" id="logined">Assalam o Alaikum, ( @Session["name"] ) &nbsp;<a href="/Index/logout">Sign out</a> </p>
+
+    </div>
+    <!-- login logout and account end -->
+
+    <!-- ad post button -->
+    <div class="span2">
+        <a class="btn btn-success btn-large pull-right" style="font-size: medium" href="/Index/postAd">POST FREE AD</a>
+        @* postAd.html?tab1 *@
+    </div>
+    <!-- ad post button end-->
+
+</div>
+<!-- top header + icon end-->
+<hr />
+
+<!-- Tabbable nav -->
+<div class="tabbable">
+    <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs mynav" id="myTab">
+        @{if (ViewBag.a == "tab1")
+          {
+            <li class="active"><a href="#tab1" data-toggle="tab" class="mylink link1">Post Ad</a></li>
+            <li><a href="#tab2" data-toggle="tab" class="mylink link2">My Ads</a></li>
+            <li><a href="#tab3" data-toggle="tab" class="mylink link3">My Account</a></li>
+          }
+          else if (ViewBag.a == "tab3")
+          {
+            <li><a href="#tab1" data-toggle="tab" class="mylink link1">Post Ad</a></li>
+            <li><a href="#tab2" data-toggle="tab" class="mylink link2">My Ads</a></li>
+            <li class="active"><a href="#tab3" data-toggle="tab" class="mylink link3">My Account</a></li> 
+          }
+
+          else
+          {
+            <li><a href="#tab1" data-toggle="tab" class="mylink link1">Post Ad</a></li>
+            <li class="active"><a href="#tab2" data-toggle="tab" class="mylink link2">My Ads</a></li>
+            <li><a href="#tab3" data-toggle="tab" class="mylink link3">My Account</a></li> 
+          }
+        }
+
+    </ul>
+
+    <!-- tab nav content -->
+    <div class="tab-content base-tab">
+
+        <!-- new ad creation -->
+        <div class="tab-pane container mytab" id="tab1">
+            <!-- ad details -->
+            <form class="form-horizontal" method="post" action="/Index/createAd" enctype="multipart/form-data">
+                <div class="row">
+                    <!-- ad details-->
+                    <div class="span4">
+                        <fieldset>
+                            <legend>Create Your Ad</legend>
+                            <label>Title of your ad*</label>
+                            <input id="title" name="title" type="text" placeholder="" required="required" autocomplete="off" />
+                            <br />
+                            <br />
+                            <label>Description*</label>
+                            <textarea id="detail" name="detail" rows="6" style="resize: vertical"></textarea>
+                            <br />
+                            <br />
+                            <label>Asking price*</label>
+                            <div class="input-prepend">
+                                <span class="add-on">Rs.</span>
+                                <input class="span2" id="price" name="price" type="number" required="required" autocomplete="off" />
+                            </div>
+                            <br />
+                            <br />
+                            <input name="imgshow1" hidden="hidden" id="img1" type="hidden" value="notavailableDefaultimage.jpg" />
+                            <input name="imgshow2" hidden="hidden" id="img3" type="hidden" value="notavailableDefaultimage.jpg" />
+                            <input name="imgshow3" hidden="hidden" id="img2" type="hidden" value="notavailableDefaultimage.jpg" />
+                            <input name="imgshow4" hidden="hidden" id="img4" type="hidden" value="notavailableDefaultimage.jpg" />
+
+                            <label>Images</label>
+                            <img id="imgshow1" class="img-polaroid imgs" src="/img/noimage.png" />
+                            <img id="imgshow2" class="img-polaroid imgs" src="/img/noimage.png" />
+                            <img id="imgshow3" class="img-polaroid imgs" src="/img/noimage.png" />
+                            <img id="imgshow4" class="img-polaroid imgs" src="/img/noimage.png" />
+                            <p style="font-size: smaller">
+                                <br />
+                                Only JPG, PNG, JPEG and not more than 4 MB.
+                                        <br />
+                                You can upload 4 images.
+                            </p>
+
+
+                            <input id="Adpic" type="file" name="Adpic" accept='image/*' onchange="readURL(this);" />
+
+
+                        </fieldset>
+                    </div>
+                    <!-- ad details end-->
+
+                    <!-- ad addition details -->
+                    <div class="span4">
+                        <fieldset>
+                            <legend>Additional Details</legend>
+                            <label>Catagory*</label>
+                            <select name="catagory" id="catagory" required="required" onchange="loadForm();">
+                                <option id="all">ALL CATEGORIES</option>
+                                <option id="MOBILE">MOBILE</option>
+                                <option id="LAPTOPS">LAPTOPS</option>
+                                <option id="DESKTOP">DESKTOP</option>
+                                <option id="COMPUTER ACC.">COMPUTER ACC.</option>
+                                <option id="TABLETS">TABLETS</option>
+                                <option id="CAMERAS">CAMERAS</option>
+                                <option id="GAMES & DEVICES">GAMING</option>
+                                <option id="DEVICES">SOFTWARE</option>
+                                <option id="MOBILE ACC.">MOBILE ACC.</option>
+                                <option id="SERVICES">SERVICES</option>
+                            </select>
+                            <br />
+                            <br />
+                            <label class="radio inline">
+                                <input type="radio" name="radio7" id="wanted" value="Wanted" />
+                                Wanted
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" name="radio7" id="forsale" value="For Sale" checked="checked" />
+                                For Sale
+                            </label>
+                            <br />
+                            <br />
+
+                            <div id="myDiv"></div>
+
+
+                            <label>Condition*</label>
+                            <select name="condition" id="condition" required="required">
+                                <option value="">Select </option>
+                                <option value="Brand New">Brand New </option>
+                                <option value="10/10">10</option>
+                                <option value="9.5/10">9.5</option>
+                                <option value="9/10">9</option>
+                                <option value="8.5/10">8.5</option>
+                                <option value="8/10">8</option>
+                                <option value="7.5/10">7.5</option>
+                                <option value="7/10">7</option>
+                                <option value="6.5/10">6.5</option>
+                                <option value="6/10">6</option>
+                                <option value="5.5/10">5.5</option>
+                                <option value="5/10">5</option>
+                            </select>
+                            <br />
+                            <br />
+                            <label>Warranty*</label>
+                            <select name="warranty" id="warranty" required="required">
+                                <option value="">Select </option>
+                                <option value="1 Year">1 Year</option>
+                                <option value="11 Months">11 Months</option>
+                                <option value="10 Months">10 Months</option>
+                                <option value="9 Months">9 Months</option>
+                                <option value="8 Months">8 Months</option>
+                                <option value="7 Months">7 Months</option>
+                                <option value="6 Months">6 Months</option>
+                                <option value="5 Months">5 Months</option>
+                                <option value="4 Months">4 Months</option>
+                                <option value="4 Months">4 Months</option>
+                                <option value="3 Months">3 Months</option>
+                                <option value="2 Months">2 Months</option>
+                                <option value="1 Months">1 Month</option>
+                                <option value="No Warranty">No Warranty</option>
+                            </select>
+
+                            <br />
+                            <br />
+                            <label>Post Ad As</label>
+
+                            <label class="radio inline">
+                                <input type="radio" name="radio1" id="indiv" value="Individual" checked="checked" />
+                                Individual
+                            </label>
+                            <label class="radio inline">
+                                <input type="radio" name="radio1" id="business" value="Business" />
+                                Professionals/Business
+                            </label>
+                        </fieldset>
+                    </div>
+                    <!-- ad addition details end-->
+
+                    <!-- ad show in -->
+                    <div class="span4">
+                        <fieldset>
+                            <legend>Your Contact Details</legend>
+                            <label>Email primary</label>
+                            <input id="e1" disabled="disabled" type="text" value="@Session["email"]"/>
+                            <br />
+                            <br />
+                            <label>Email secondary</label>
+                            <input id="email" name="email" type="email" />
+                            <br />
+                            <br />
+                            <label>City*</label>
+                            <select name="city" id="city" required="required">
+                                <option value="">Select City</option>
+                                <option value="Abottabad">Abottabad </option>
+                                <option value="Attock">Attock </option>
+                                <option value="Bahawalnagar">Bahawalnagar</option>
+                                <option value="Bahawalpur">Bahawalpur </option>
+                                <option value="Chakwal">Chakwal </option>
+                                <option value="Chitral">Chitral </option>
+                                <option value="D.I.Khan">D.I.Khan</option>
+                                <option value="Dera Ghazi Khan">Dera Ghazi Khan </option>
+                                <option value="Faisalabad">Faisalabad </option>
+                                <option value="Gujranwala">Gujranwala </option>
+                                <option value="Gujrat">Gujrat</option>
+                                <option value="Gwadar">Gwadar </option>
+                                <option value="Hafizabad">Hafizabad </option>
+                                <option value="Haripur">Haripur </option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="Jhang">Jhang </option>
+                                <option value="Jhelum">Jhelum</option>
+                                <option value="Karachi">Karachi  </option>
+                                <option value="Kasur">Kasur </option>
+                                <option value="Khairpur">Khairpur </option>
+                                <option value="Khanewal">Khanewal </option>
+                                <option value="Kohat">Kohat</option>
+                                <option selected="selected" value="Lahore">Lahore</option>
+                                <option value="Larkana">Larkana </option>
+                                <option value="Mansehra">Mansehra</option>
+                                <option value="Mardan">Mardan </option>
+                                <option value="Mianwali">Mianwali </option>
+                                <option value="Mirpur">Mirpur</option>
+                                <option value="Mirpur Khas">Mirpur Khas </option>
+                                <option value="Multan">Multan </option>
+                                <option value="Muridke">Muridke </option>
+                                <option value="Muzaffarabad">Muzaffarabad</option>
+                                <option value="Muzaffargarh">Muzaffargarh </option>
+                                <option value="Nawabshah">Nawabshah </option>
+                                <option value="Nowshera">Nowshera </option>
+                                <option value="Okara">Okara </option>
+                                <option value="Pakpattan">Pakpattan </option>
+                                <option value="Peshawar">Peshawar </option>
+                                <option value="Quetta">Quetta </option>
+                                <option value="Rahim Yar Khan">Rahim Yar Khan </option>
+                                <option value="Rawalpindi">Rawalpindi </option>
+                                <option value="Rawlakot">Rawlakot</option>
+                                <option value="Sahiwal">Sahiwal </option>
+                                <option value="Sanghar">Sanghar </option>
+                                <option value="Sarai Alamgir">Sarai Alamgir </option>
+                                <option value="Sargodha">Sargodha </option>
+                                <option value="Sheikhupura">Sheikhupura</option>
+                                <option value="Shikarpur">Shikarpur </option>
+                                <option value="Sialkot">Sialkot </option>
+                                <option value="Sibi">Sibi</option>
+                                <option value="Sukkur">Sukkur </option>
+                                <option value="Swabi">Swabi </option>
+                                <option value="Swat">Swat </option>
+                                <option value="Thatta">Thatta </option>
+                                <option value="Toba Tek Singh">Toba Tek Singh </option>
+                                <option value="Umerkot">Umerkot </option>
+                                <option value="Upper Dir">Upper Dir </option>
+                                <option value="Vehari">Vehari </option>
+                                <option value="Wazirabad">Wazirabad</option>
+                                <option value="Zhob">Zhob </option>
+                                <option value="Ziarat">Ziarat </option>
+                            </select>
+                            <br />
+                            <br />
+                            <label>Area*</label>
+                            <input id="area" name="area" type="text" placeholder="like: Anarkali" required="required" autocomplete="off" />
+                            <br />
+                            <br />
+                            <label>Mobile</label>
+                            <input id="mobilePrim" name="mobilePrim" disabled="disabled" type="text" value="@Session["cell"]" />
+                            <span class="help-inline">(Primary)</span>
+                            <br />
+                            <br />
+
+                            <label>Mobile</label>
+                            <input id="mobileSec" name="mobileSec" type="text" class="bfh-phone" autocomplete="off" data-format="dddd-ddddddd">
+                            <span class="help-inline">(Secondary)</span>
+                            <br />
+                            <br />
+
+                        </fieldset>
+
+                        <span class="help-block" style="color: red;">* indicates that these fields are required.</span>
+                        <br />
+                        <button id="upload" class="btn btn-large btn-success" value="Upload">Publish My Ad</button>
+                        <div id="progressNumber"></div>
+                    </div>
+                    <!-- ad show in end-->
+                </div>
+            </form>
+            <!-- ad details end-->
+        </div>
+        <!-- new ad creation end-->
+
+        <!-- my ads portion -->
+        <div class="tab-pane container mytab" id="tab2">
+            <table class="table table-bordered">
+                <thead style="background-color:#f79f14; color: white;">
+                    <tr>
+                        <th>Ad Title</th>
+                        <th>Price</th>
+                        <th>Catagory</th>
+                        <th>Date Posted</th>
+                        <th>Actoin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{if (Model != null)
+                      {
+                          foreach (var item in Model)
+                          {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.adtitle)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.catagory)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.date)
+                            </td>
+
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-success" id="adDetails" href="/index/Details?id=@item.Id" >Details</a>
+                                    <a class="btn btn btn-info" id="editAd" href="/index/Edit?id=@item.Id">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                                    <a class="btn btn-danger"  id="deleteAd" href="/index/Delete?id=@item.Id">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                          }
+                      }}
+                </tbody>
+            </table>
+            <span class="help-block" style="color: red;">*Ad once deleted cannot be retrived</span>
+        </div>
+        <!-- my ads portion end-->
+
+        <!-- My account portion -->
+        <div class="tab-pane container mytab" id="tab3">
+
+
+            <!-- basic information -->
+
+            <form class="myForm">
+
+                <fieldset>
+                    <legend>Basic Information</legend>
+                </fieldset>
+
+                <label class="title">Email</label>
+                
+                    <input id="Text1" disabled="disabled" type="text" value="@Session["email"]"/>
+
+
+            </form>
+
+            <form class="myForm" method="post" action="/Index/changePass">
+                <label class="title">Password</label>
+                <div class="input-append">
+                    <input id="Text2" disabled="disabled" type="password" value="XXXXXXXXXXXXXX" />
+                    <a href="#pasChangeModel" role="button" class="btn" data-toggle="modal">Edit</a>
+                </div>
+
+                <!-- passChangeModel -->
+                <div id="pasChangeModel" class="modal hide fade" tabindex="-1" role="form" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="H4">Change Your Password</h3>
+                    </div>
+                    <div class="modal-body">
+                        <label>Old password*</label>
+                        <input id="OldPassword" name="OldPassword" type="password" required="required" autocomplete="off" />
+
+                        <label>New password*</label>
+                        <input id="NewPassword" name="NewPassword" type="password" required="required" autocomplete="off" />
+
+                    </div>
+                    <div class="modal-footer">
+                        <span class="help-block pull-left" style="color: red;">* indicates that these fields are required.</span>
+                        <button type="submit" class="btn btn-success mysubmit">Save change</button>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    </div>
+                </div>
+                <!-- passChangeModel end-->
+            </form>
+
+            
+
+            <!-- basic information end-->
+
+            <!-- personal info -->
+            <form class="myForm" method="post" action="/Index/editAcc">
+
+                <!-- personal details -->
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <label>Name</label>
+                    <input id="name" name="name" type="text" value="@Session["name"]" />
+
+                    <label>Mobile</label>
+                    <input name="mobile" id="mobile" type="text" class="bfh-phone" 
+                         data-format="dddd-ddddddd" placeholder="@Session["cell"]" >
+                </fieldset>
+                <!-- personal details end-->
+
+                <button type="submit" class="btn btn-large btn-success pull-right">Save Changes</button>
+            </form>
+            <!-- personal info end-->
+
+        </div>
+        <!-- My account portion end-->
+
+    </div>
+    <!-- tab nav content end-->
+</div>
+<!-- Tabbable nav end-->
+
+<hr />
+
+<!-- site script -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //tab selector
+
+        //var newvar = document.URL.split("?")[1];
+        var newvar = '@ViewBag.a';
+
+        if (newvar == 'tab3') {
+            $('div.tab-content').children().removeClass('active');
+            $('#tab3').addClass('active');
+            $('#tab3').tab('show');// Select last tab
+        }
+
+        else if (newvar == 'tab2') {
+            $('div.tab-content').children().removeClass('active');
+            $('#tab2').addClass('active');
+            $('#tab2').tab('show');// Select first tab
+        }
+
+        else if (newvar == 'tab1') {
+            $('div.tab-content').children().removeClass('active');
+            $('#tab1').addClass('active');
+            $('#tab1').tab('show');// Select first tab
+        }
+
+    });
+
+    
+    if ('@ViewBag.error' == 'no') {
+        $().toastmessage('showToast', {
+            text: 'Password is not changed because something is wrong!!',
+            sticky: false,
+            position: 'middle-center',
+            type: 'error',
+        });
+    }
+    else if('@ViewBag.error' == 'yes'){
+        $().toastmessage('showToast', {
+            text: 'Password successfully changed ',
+            sticky: false,
+            position: 'middle-center',
+            type: 'success',
+        });
+    }
+
+    //File uploader
+    var img_id = 1;
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                if (img_id < 5) {
+                    $('#imgshow' + img_id).attr('src', e.target.result);
+
+                    var file_data = $("#Adpic").prop("files")[0];   // Getting the properties of file from file field
+                    $('#img' + img_id).val(file_data.name);
+                    var form_data = new FormData();                  // Creating object of FormData class
+                    form_data.append("file", file_data)              // Appending parameter named file with properties of file_field to form_data
+                    form_data.append("user_id", 123)                 // Adding extra parameters to form_data
+                    $.ajax({
+                        url: "/index/SaveFile",
+                        dataType: 'script',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,                         // Setting the data attribute of ajax with file_data
+                        type: 'post'
+                    })
+                    img_id++;
+                }
+                else {
+                    alert("Cannot upload more images")
+                }
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('.alert').delay(4000).fadeOut('slow');
+
+    //ajax funtion to load catagory
+    function loadForm() {
+        if ($("#catagory option:selected").val() == 'MOBILE') {
+            $('#myDiv').load('/css/HtmlPage1.html #mobile');
+        }
+        else if ($("#catagory option:selected").val() == 'LAPTOPS') {
+            $('#myDiv').load('/css/HtmlPage1.html #laptop');
+        }
+        else if ($("#catagory option:selected").val() == 'DESKTOP') {
+            $('#myDiv').load('/css/HtmlPage1.html #desktop');
+        }
+        else if ($("#catagory option:selected").val() == 'TABLETS') {
+            $('#myDiv').load('/css/HtmlPage1.html #tablet');
+        }
+        else if ($("#catagory option:selected").val() == 'CAMERAS') {
+            $('#myDiv').load('/css/HtmlPage1.html #camera');
+        }
+        else if ($("#catagory option:selected").val() == 'GAMING') {
+            $('#myDiv').load('/css/HtmlPage1.html #gaming');
+        }
+        else {
+            $('#myDiv').load('/css/HtmlPage1.html #dumme');
+        }
+    }
+
+
+
+    //adDetails
+
+
+</script>
+<!-- site script end-->
+
+
+

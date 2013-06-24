@@ -1,0 +1,115 @@
+﻿@model IPagedList<allad>
+@{
+    Layout = "";
+}
+
+<div id="restlist">
+
+    <!-- right side inner row 1-->
+    @{if (Model != null)
+      {
+          foreach (var item in Model)
+          {
+        <div class="span2" id="basic">
+            @*<a href="/index/Details?id=@item.Id" class="thumbnail" title="@item.adtitle.ToUpper()">
+                <img src="/Files/@item.img1" alt="@item.adtitle.ToUpper()" style="height:120px"/>
+            </a>
+            <div class="caption" style="padding: 10px">
+
+                @if (item.adtitle.Length > 12)
+                {
+                    
+                    <a href="/index/Details?id=@item.Id" title="@item.adtitle.ToUpper()">
+                        @item.adtitle.ToString().Substring(0, 12).ToUpper()...
+                    </a>
+                }
+                else
+                {
+                    
+                    <a href="/index/Details?id=@item.Id" title="@item.adtitle.ToUpper()">
+                        @item.adtitle.ToUpper()
+                    </a>
+                    
+                }
+            </div>*@
+            <div class="caption">
+                @if (item.adtitle.Length > 12)
+                {
+                    <a style="font-size:smaller" href="/index/Details?id=@item.Id" title="@item.adtitle.ToUpper()">
+                        @item.adtitle.ToString().Substring(0, 12).ToUpper()...
+                    </a>
+                }
+                else
+                {
+                    
+                    <a style="font-size:smaller" href="/index/Details?id=@item.Id" title="@item.adtitle.ToUpper()">
+                        @item.adtitle.ToUpper()
+                    </a>
+                    
+                }
+            </div>
+            <div class="wp-caption">
+                <a href="/index/Details?id=@item.Id" title="@item.adtitle.ToUpper()">
+                    <img src="/Files/@item.img1" alt="@item.adtitle.ToUpper()" style="height:130px"/>
+                </a>
+
+                <p style="font-size:smaller;" class="wp-caption-text">
+                    <b style="color: red">Rs: @item.price</b>
+                    <br />
+                    data: @item.date
+                </p>
+            </div>
+            
+
+
+        </div>
+          }
+
+      }
+    }
+
+
+    <!-- right side inner row 2 end-->
+</div>
+
+<style>
+    :focus, :active {
+        outline: 0;
+    }
+
+    .wp-caption {
+        position: relative;
+        margin-bottom: 20px;
+        border: 3px solid #999;
+        overflow: hidden;
+        -moz-border-radius: 2px;
+        -khtml-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .wp-caption-text {
+        padding: 5px 10px;
+        background-color: #333;
+        color: #EEE;
+        border-top: 1px solid #666;
+    }
+</style>
+
+
+<script>
+    $('div.wp-caption').each(function (i) {
+
+        var img_ = $('img', this);
+        var img_height = img_.css('height');
+        var p_height = $('p', this).outerHeight();
+
+        $(this).height(img_height);
+        $(this).hover(function () {
+            img_.animate({ marginTop: -p_height }, 500);
+        }, function () {
+            img_.animate({ marginTop: '0' }, 500);
+        });
+
+    });
+</script>

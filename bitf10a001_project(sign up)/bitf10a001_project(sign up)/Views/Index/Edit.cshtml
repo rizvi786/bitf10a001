@@ -1,0 +1,178 @@
+﻿@model bitf10a001_project_sign_up_.Models.allad
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>allad</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.emailacc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.emailacc)
+            @Html.ValidationMessageFor(model => model.emailacc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.adtitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.adtitle)
+            @Html.ValidationMessageFor(model => model.adtitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.price)
+            @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.catagory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.catagory)
+            @Html.ValidationMessageFor(model => model.catagory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.postas)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.postas)
+            @Html.ValidationMessageFor(model => model.postas)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.condtion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.condtion)
+            @Html.ValidationMessageFor(model => model.condtion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.warranty)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.warranty)
+            @Html.ValidationMessageFor(model => model.warranty)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.adis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.adis)
+            @Html.ValidationMessageFor(model => model.adis)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.city)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.city)
+            @Html.ValidationMessageFor(model => model.city)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.area)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.area)
+            @Html.ValidationMessageFor(model => model.area)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mobile1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mobile1)
+            @Html.ValidationMessageFor(model => model.mobile1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mobile2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mobile2)
+            @Html.ValidationMessageFor(model => model.mobile2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.date)
+            @Html.ValidationMessageFor(model => model.date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.img1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.img1)
+            @Html.ValidationMessageFor(model => model.img1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.img2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.img2)
+            @Html.ValidationMessageFor(model => model.img2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.img3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.img3)
+            @Html.ValidationMessageFor(model => model.img3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.img4)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.img4)
+            @Html.ValidationMessageFor(model => model.img4)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "/Index/postAd")
+</div>
+

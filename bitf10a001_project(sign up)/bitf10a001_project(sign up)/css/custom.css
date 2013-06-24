@@ -1,0 +1,114 @@
+
+/* Custom container */
+.container {
+    /*margin: 0 auto;*/
+    /*max-width: 1000px;*/
+}
+
+    .container > hr {
+        /*margin: 60px 0;*/
+    }
+
+/*ads links*/
+.row-fluid a {
+    text-decoration: none;
+    color: #1b58b7;
+}
+
+.row-fluid a:hover {
+    text-decoration: none;
+    color: #fb9303;
+}
+
+.mypara {
+    text-align: right;
+}
+
+    .mypara a {
+        text-decoration: none;
+        color: #1b58b7;
+    }
+
+        .mypara a:hover {
+            text-decoration: none;
+            color: #fb9303;
+        }
+
+.mySpan {
+    /*border-style: solid;
+    border-top: none;
+    border-width: 1px;
+    border-color: #aea9a9;
+    border-radius: 8px*/
+}
+
+.mySpan-top {
+    border-width: 1px;
+    border-color: #aea9a9;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background-color: black;
+}
+
+.mySpan-buttom {
+    border-style: dotted;
+    border-color: #aea9a9;
+    border-top: none;
+    border-width: 1px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/*custom cool icons*/
+
+.facebook img:hover {
+    background-color: #4f4ffa;
+}
+
+.google img:hover {
+    background-color: #ff4747;
+}
+
+.skype img:hover {
+    background-color: #05defc;
+}
+
+.mail img:hover {
+    background: #fb9303;
+}
+
+/*custom model */
+.modal-body {
+
+}
+
+.login {
+    padding: 10px;
+}
+
+.register {
+    padding: 10px;
+}
+
+/*custom tabs*/
+.mylink {
+    color: black;
+}
+
+.base-tab {
+    /*border: 5px solid black;*/
+}
+
+.mytab {
+    padding-bottom: 50px;
+}
+
+.imgs {
+    width:50px;
+    height:50px;
+}
+
+.imgsDetail {
+    width:173px;
+    height:150px;
+}

@@ -1,0 +1,455 @@
+﻿@model IPagedList<allad>
+
+@{
+    ViewBag.Title = "RIZZOTTO CLASSIFIED";
+}
+
+<!-- site body -->
+
+
+<!-- top header + icon + nav bar -->
+<div class="row">
+    <br />
+    <!-- site logo -->
+    <div class="span4">
+        <a id="header_logo" href="#" title="FURNITURE">
+            <img src="/img/logoNew.png" alt="FURNITURE" />
+        </a>
+    </div>
+    <!-- site logo end-->
+
+    @{if (Session["id"] == null)
+      {
+        <div class="span8">
+            <div class="btn-group pull-right">
+                <a href="#myModal" class="btn btn-warning btn-large" role="button" data-toggle="modal">Log in</a>
+                <a href="#myModal1" class="btn btn-info btn-large" role="button" data-toggle="modal">Sign up</a>
+                <a class="btn btn-danger btn-large" role="button" href="/Index/AdminPanel">Admin</a>
+            </div>
+        </div>
+      }
+      else
+      {
+        <!-- login logout and account -->
+        <div class="span6">
+            <!-- login logout and account -->
+
+            <p class="mypara" id="myacc">
+                <a href="/Index/myAcc">My Account</a>&nbsp;
+                
+                <span class="divider">|</span>
+                <a href="/Index/myAds">&nbsp;My Ads</a>&nbsp;
+                    
+                    
+            </p>
+            <p class="mypara" id="logined">Assalam o Alaikum, ( @Session["name"] ) &nbsp;<a href="/Index/logout">Sign out</a> </p>
+        </div>
+        <!-- login logout and account end -->
+
+        <!-- ad post button -->
+        <div class="span2">
+            <a class="btn btn-success btn-large pull-right" id="freead" style="font-size: medium" href="/Index/postAd">POST FREE AD</a>
+        </div>
+        <!-- ad post button end-->
+      }
+    }
+
+    <!-- Modal login-->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="form" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">LOG IN</h3>
+        </div>
+        <div class="modal-body">
+
+            <form method="post" action="/Index/login">
+                <label class="title">Email*</label>
+                <input type="email" name="email" value="" required="required" />
+
+                <label class="title">Password*</label>
+                <input type="password" name="pass" value="" required="required" autocomplete="off" />
+                <br />
+                <button type="submit" id="modalsubmit" class="btn btn-success mysubmit">Log in</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <span class="help-block pull-left" style="color: red;">* indicates that these fields are required.</span>
+        </div>
+    </div>
+    <!--Modal login end-->
+
+
+    <!-- Modal signin-->
+    <div id="myModal1" class="modal hide fade" tabindex="-1" role="form" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel1">SIGN UP</h3>
+        </div>
+        <div class="modal-body">
+
+            <p>CREATE YOUR ACCOUNT</p>
+            <hr />
+            <form method="post" action="/Index/save">
+                <div class="row">
+                    <div class="span3">
+                        <label class="title">Name*</label>
+                        <input type="text" class="span2" name="name" required="required" autocomplete="off" />
+
+                        <label class="title">Email*</label>
+                        <input type="email" class="span2" name="UserName" id="email" value="" required="required" autocomplete="off" />
+
+
+                        <div id="EmailChecker">
+                            <img id="checking" src="~/img/loader.gif" />
+                        </div>
+                    </div>
+                    <div class="span2">
+                        <label class="title">Password*</label>
+                        <input type="password" class="span2" name="pass" id="pass" value="" required="required" autocomplete="off" />
+
+                        <label class="title">Mobile*</label>
+                        <input name="mobile" id="mobile" type="text" class="span2 bfh-phone" autocomplete="off" data-format="dddd-ddddddd" required="required">
+                        <br />
+                        <button type="submit" class="btn btn-success mysubmit">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <span class="help-block pull-left" style="color: red;">* indicates that these fields are required.</span>
+        </div>
+    </div>
+    <!--Modal signin end-->
+
+
+    <!-- login logout and account end-->
+</div>
+
+<hr />
+<!-- navbar -->
+<div class="navbar mainnav" id="mainnav">
+    <div class="navbar-inner">
+        <div class="container two">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li><a href="#">MOBILE</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">LAPTOPS</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">DESKTOP</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">COMPUTER ACC.</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">TABLETS</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">CAMERAS</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">GAMING</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">SOFTWARE</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">MOBILE ACC.</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#">SERVICES</a></li>
+                    <li class="divider-vertical"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- navbar end-->
+
+<!-- top header + icon + nav bar end-->
+
+<!-- Carousel -->
+<div class="flexslider">
+
+    <ul class="slides">
+        <li>
+            <img src="/img/fur1.jpg" /></li>
+        <li>
+            <img src="/img/fur2.jpg" /></li>
+        <li>
+            <img src="/img/fur3.jpg" /></li>
+        <li>
+            <img src="/img/fur4.jpg" /></li>
+        <li>
+            <img src="/img/fur5.jpg" /></li>
+        <li>
+            <img src="/img/fur6.jpg" /></li>
+        <li>
+            <img src="/img/fur7.jpg" /></li>
+        <li>
+            <img src="/img/fur8.jpg" /></li>
+        <li>
+            <img src="/img/fur9.jpg" /></li>
+        <li>
+            <img src="/img/fur10.jpg" /></li>
+        <li>
+            <img src="/img/fur11.jpg" /></li>
+        <li>
+            <img src="/img/fur12.jpg" /></li>
+    </ul>
+
+</div>
+<!-- Carousel end -->
+
+<!-- dumme row -->
+<div class="row">
+    <div class="span12" style="">
+    </div>
+</div>
+<!-- dumme row end-->
+
+<!--- search and ads -->
+<div class="row">
+
+    <!-- left side -->
+    <div class="span3">
+        <div class="row-fluid">
+            <div class="span12  mySpan-top">
+                <h4 style="text-align: center; color: white;">Search</h4>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12  mySpan-buttom">
+                <div class="container-fluid">
+                    <form>
+                        <br>
+                        <label>KEYWORD</label>
+                        <input id="key" type="text" class="span12" placeholder="SEARCH SOMETHING…" required="required" autocomplete="off">
+                        <hr />
+                        <label>PRICE</label>
+                        <input id="from" class="span12" type="text" placeholder="FROM">
+                        <input id="to" class="span12" type="text" placeholder="TO">
+                        <hr />
+                        <label>SELECT CATAGORY</label>
+                        <select class="span12" name="catagory" id="catagory">
+                            <option value="all">ALL CATEGORIES</option>
+                            <option value="MOBILE">MOBILE</option>
+                            <option value="LAPTOPS">LAPTOPS</option>
+                            <option value="DESKTOP">DESKTOP</option>
+                            <option value="COMPUTER ACC.">COMPUTER ACC.</option>
+                            <option value="TABLETS">TABLETS</option>
+                            <option value="CAMERAS">CAMERAS</option>
+                            <option value="GAMES & DEVICES">GAMING</option>
+                            <option value="DEVICES">SOFTWARE</option>
+                            <option value="MOBILE ACC.">MOBILE ACC.</option>
+                            <option value="SERVICES">SERVICES</option>
+                        </select>
+                        <hr />
+                        <label>SELLER TYPE</label>
+                        <label class="checkbox">
+                            <input id="indiv" type="checkbox">
+                            INDIVIDUALS
+                        </label>
+                        <label class="checkbox">
+                            <input id="business" type="checkbox">
+                            BUSINESS
+                        </label>
+                        <hr />
+                        <button type="submit" class="btn">SEARCH</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- left side end -->
+
+    <!-- right side -->
+
+    <div class="span9">
+        <div class="row-fluid">
+            <div class="span12  mySpan-top">
+                <h4 style="text-align: center; color: white;">Recent Ads</h4>
+            </div>
+        </div>
+        <br />
+
+        <div id="list">
+            @Html.Partial("adView")
+        </div>
+
+    </div>
+</div>
+<!--- search and ads end -->
+
+
+<!-- pagination start  -->
+<div class="pagination pagination-centered">
+    <ul id="pages">
+        <li><a href="/?page=1">&laquo;</a></li>
+        <li><a href="/?page=1">1</a></li>
+    </ul>
+</div>
+<!-- pagination end  -->
+<br />
+
+<!--image menu  -->
+<div class="hidden-phone" style="border-bottom: solid; border-top: solid; border-color: #e2e0e0; border-width: 1px;">
+    <br />
+    <div class="row">
+        <div class="span1"></div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="mobile">
+                <img src="/img/mobile-icon.png" alt="mobile" />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="laptop">
+                <img src="/img/laptop-icon.png" alt="laptop" />
+
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="computer">
+                <img src="/img/computer-icon.png" alt="computer" />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="mobile acc.">
+                <img src="/img/acc-icon.png" alt="computer acc." />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="tablet">
+                <img src="/img/tablets-icon.png" alt="tablet" />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="camera">
+                <img src="/img/Camera-icon.png" alt="camera" />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="gaming">
+                <img src="/img/console-icon.png" alt="gaming" />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="mobile acc.">
+                <img src="/img/mob-acc-icon.png" alt="mobile acc." />
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="software">
+                <img src="/img/software-icon.png"@* style="height:60px; width:100px" *@alt="software"/>
+            </a>
+        </div>
+        <div class="span1">
+            <a href="#" class="thumbnail" title="sevices">
+                <img src="/img/sevices-icon.png" alt="sevices" />
+            </a>
+        </div>
+
+    </div>
+    <br />
+</div>
+<!--image menu end -->
+<br />
+
+
+
+
+<!-- container end-->
+
+<!-- site body end-->
+
+<!-- site script -->
+<script type="text/javascript">
+    $(function () {
+        $('.carousel').carousel({
+            interval: 6000
+        });
+
+
+        $('.flexslider').flexslider({
+            pauseOnAction: false,
+            animationSpeed: 2500,
+            slideshowSpeed: 4000,
+            randomize: true
+        });
+
+        $('div.wp-caption').each(function (i) {
+
+            var img_ = $('img', this);
+            var img_height = img_.css('height');
+            var p_height = $('p', this).outerHeight();
+
+            $(this).height(img_height);
+            $(this).hover(function () {
+                img_.animate({ marginTop: -p_height }, 500);
+            }, function () {
+                img_.animate({ marginTop: '0' }, 500);
+            });
+
+        });
+
+        $('#pages a').on("click", getpage);
+
+        function getpage() {
+            var $a = $(this);
+
+            var options = {
+                url: $a.attr("href"),
+                type: 'get'
+            };
+
+            $.ajax(options).done(function (data) {
+                $("#list").html(data);
+            });
+            return false;
+        };
+    });
+
+    if ('@ViewBag.status' == 'no') {
+        $().toastmessage('showToast', {
+            text: 'Email or passward provided is wrong!!',
+            sticky: false,
+            position: 'top-center',
+            type: 'error',
+        });
+    }
+
+    var PageCount = '@Model.PageCount';
+
+    if (PageCount > 1) {
+        for (var a = 0; a < PageCount - 1; a++) {
+            $('#pages').append("<li><a href=\"/?page=" + (a + 2) + "\">" + (a + 2) + "</a></li>")
+        }
+        $('#pages').append("<li><a href=\"?page=" + (PageCount) + "\">&raquo;</a></li>")
+    }
+    $('#checking').hide();
+
+    $('#email').bind('blur', function () {
+        $('#checking').hide();
+        $('#EmailChecker').text("");
+    });
+
+    $('#email').bind('change', function () {
+        var email = $('#email').val();
+
+        $('#checking').show();
+
+        $.getJSON("/Index/emailChecker?email=" + email, function (data) {
+            $('#checking').hide();
+            if (data) {
+                $('#EmailChecker').css("color", "red")
+                $('#EmailChecker').text("User already exists");
+                $('#email').val("");
+            }
+            else {
+                $('#EmailChecker').css("color", "green")
+                $('#EmailChecker').text("Available");
+            }
+        });
+
+    });
+
+</script>
+<!-- site script end-->

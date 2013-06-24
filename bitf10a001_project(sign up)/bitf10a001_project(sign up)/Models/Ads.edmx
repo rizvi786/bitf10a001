@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="adsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="adsModelStoreContainer">
+          <EntitySet Name="allads" EntityType="adsModel.Store.allads" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="moredetails" EntityType="adsModel.Store.moredetails" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_moredetails_ToTable" Association="adsModel.Store.FK_moredetails_ToTable">
+            <End Role="allads" EntitySet="allads" />
+            <End Role="moredetails" EntitySet="moredetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="allads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="emailacc" Type="varchar(max)" />
+          <Property Name="adtitle" Type="varchar(max)" />
+          <Property Name="description" Type="text" />
+          <Property Name="price" Type="varchar(max)" />
+          <Property Name="catagory" Type="varchar" MaxLength="150" />
+          <Property Name="postas" Type="varchar" MaxLength="50" />
+          <Property Name="condtion" Type="varchar" MaxLength="50" />
+          <Property Name="warranty" Type="varchar" MaxLength="50" />
+          <Property Name="adis" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar(max)" />
+          <Property Name="city" Type="varchar" MaxLength="150" />
+          <Property Name="area" Type="varchar(max)" />
+          <Property Name="mobile1" Type="varchar" MaxLength="50" />
+          <Property Name="mobile2" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="varchar" MaxLength="50" />
+          <Property Name="img1" Type="varchar(max)" />
+          <Property Name="img2" Type="varchar(max)" />
+          <Property Name="img3" Type="varchar(max)" />
+          <Property Name="img4" Type="varchar(max)" />
+          <Property Name="time" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="moredetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="subcatagory" Type="varchar" MaxLength="150" />
+          <Property Name="model" Type="varchar" MaxLength="50" />
+          <Property Name="accesories" Type="varchar" MaxLength="50" />
+          <Property Name="postid" Type="int" />
+        </EntityType>
+        <Association Name="FK_moredetails_ToTable">
+          <End Role="allads" Type="adsModel.Store.allads" Multiplicity="0..1" />
+          <End Role="moredetails" Type="adsModel.Store.moredetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="allads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="moredetails">
+              <PropertyRef Name="postid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="adsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="adsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="allads" EntityType="adsModel.allad" />
+          <EntitySet Name="moredetails" EntityType="adsModel.moredetail" />
+          <AssociationSet Name="FK_moredetails_ToTable" Association="adsModel.FK_moredetails_ToTable">
+            <End Role="allads" EntitySet="allads" />
+            <End Role="moredetails" EntitySet="moredetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="allad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="emailacc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="adtitle" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="price" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="catagory" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="postas" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="condtion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="warranty" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="adis" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="area" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="mobile1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="mobile2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="img1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="img2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="img3" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="img4" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="time" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="moredetails" Relationship="adsModel.FK_moredetails_ToTable" FromRole="allads" ToRole="moredetails" />
+        </EntityType>
+        <EntityType Name="moredetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="subcatagory" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="model" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="accesories" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postid" Type="Int32" />
+          <NavigationProperty Name="allad" Relationship="adsModel.FK_moredetails_ToTable" FromRole="moredetails" ToRole="allads" />
+        </EntityType>
+        <Association Name="FK_moredetails_ToTable">
+          <End Role="allads" Type="adsModel.allad" Multiplicity="0..1" />
+          <End Role="moredetails" Type="adsModel.moredetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="allads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="moredetails">
+              <PropertyRef Name="postid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="adsModelStoreContainer" CdmEntityContainer="adsEntities">
+          <EntitySetMapping Name="allads">
+            <EntityTypeMapping TypeName="adsModel.allad">
+              <MappingFragment StoreEntitySet="allads">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="emailacc" ColumnName="emailacc" />
+                <ScalarProperty Name="adtitle" ColumnName="adtitle" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="catagory" ColumnName="catagory" />
+                <ScalarProperty Name="postas" ColumnName="postas" />
+                <ScalarProperty Name="condtion" ColumnName="condtion" />
+                <ScalarProperty Name="warranty" ColumnName="warranty" />
+                <ScalarProperty Name="adis" ColumnName="adis" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="mobile1" ColumnName="mobile1" />
+                <ScalarProperty Name="mobile2" ColumnName="mobile2" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="img1" ColumnName="img1" />
+                <ScalarProperty Name="img2" ColumnName="img2" />
+                <ScalarProperty Name="img3" ColumnName="img3" />
+                <ScalarProperty Name="img4" ColumnName="img4" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moredetails">
+            <EntityTypeMapping TypeName="adsModel.moredetail">
+              <MappingFragment StoreEntitySet="moredetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="subcatagory" ColumnName="subcatagory" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="accesories" ColumnName="accesories" />
+                <ScalarProperty Name="postid" ColumnName="postid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
